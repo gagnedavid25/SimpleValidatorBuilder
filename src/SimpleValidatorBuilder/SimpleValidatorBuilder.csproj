@@ -1,12 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>gagnedavid25</Authors>
+    <Version>1.0.0</Version>
+    <PackageId>SimpleValidatorBuilder</PackageId>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>Validation</PackageTags>
+    <Description>A simple C# validator builder using a fluent interface.</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <PackageReference Include="CSharpFunctionalExtensions" Version="2.22.0" />
   </ItemGroup>
 
