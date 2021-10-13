@@ -14,8 +14,9 @@ public class LengthIsExactlyTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .LengthIsExactly(exactLength, error);
-
+            .LengthIsExactly(exactLength, error)
+            .Build();
+        
         // Act
         var result = sut.Validate(testString);
 
@@ -33,7 +34,8 @@ public class LengthIsExactlyTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .LengthIsExactly(exactLength, error);
+            .LengthIsExactly(exactLength, error)
+            .Build();
 
         // Act
         var result = sut.Validate(testString);

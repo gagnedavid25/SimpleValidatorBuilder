@@ -1,6 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-
-namespace SimpleValidatorBuilder;
+﻿namespace SimpleValidatorBuilder;
 
 public class ValidatorBuilder<TValue, TError>
 {
@@ -14,18 +12,6 @@ public class ValidatorBuilder<TValue, TError>
     public void AddParser(in IParser<TValue, TError> validation)
         => _parsers.Add(validation);
 
-    public Result<TValue, TError> Validate(in TValue value)
-    {
-        Result<TValue, TError> result = Result.Success<TValue, TError>(value);
-
-        for (int i = 0; i < _parsers.Count; i++)
-        {
-            result = _parsers[i].Parse(result.Value);
-
-            if (result.IsFailure)
-                return result;
-        }
-
-        return result;
-    }
+    public Validator<TValue, TError> Build()
+        => new Validator<TValue, TError>(this);
 }

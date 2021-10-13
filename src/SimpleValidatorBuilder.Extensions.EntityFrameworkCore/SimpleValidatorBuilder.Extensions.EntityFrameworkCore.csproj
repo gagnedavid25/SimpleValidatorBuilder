@@ -13,10 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0-rc.1.21452.10" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SimpleValidatorBuilder\SimpleValidatorBuilder.csproj" />
+    <PackageReference Include="SimpleValidatorBuilder" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

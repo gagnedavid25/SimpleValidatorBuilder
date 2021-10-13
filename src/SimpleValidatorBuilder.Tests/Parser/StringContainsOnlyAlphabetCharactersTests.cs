@@ -14,7 +14,8 @@ public class StringContainsOnlyAlphabetCharactersTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringContainsOnlyAlphabetCharacters(error);
+            .StringContainsOnlyAlphabetCharacters(error)
+            .Build();
 
         // Act
         var result = sut.Validate(testString);
@@ -33,7 +34,8 @@ public class StringContainsOnlyAlphabetCharactersTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringContainsOnlyAlphabetCharacters(error);
+            .StringContainsOnlyAlphabetCharacters(error)
+            .Build();
 
         // Act
         var result = sut.Validate(testString);
