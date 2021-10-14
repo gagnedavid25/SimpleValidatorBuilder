@@ -92,6 +92,18 @@ public static class ValidatorBuilderExtensions
         return validatorBuilder;
     }
 
+    /// <summary>
+    /// Use this method only if no other method meets your needs
+    /// </summary>
+    public static ValidatorBuilder<TValue, TError> ValueMust<TValue, TError>(
+        this ValidatorBuilder<TValue, TError> validatorBuilder,
+        Func<TValue, bool> valuePredicate,
+        Func<TError> errorFactory)
+    {
+        validatorBuilder.AddParser(new ValueMust<TValue, TError>(valuePredicate, errorFactory));
+        return validatorBuilder;
+    }
+
     public static ValidatorBuilder<TValue, TError> WithTransformation<TValue, TError>(
         this ValidatorBuilder<TValue, TError> validatorBuilder,
         Func<TValue, TValue> transformationPredicate)
