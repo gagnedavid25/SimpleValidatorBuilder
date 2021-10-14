@@ -14,7 +14,7 @@ public class StringIsNotNullOrEmptyTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringIsNotNullOrEmpty(error)
+            .StringIsNotNullOrEmpty(() => error)
             .Build();
 
         // Act
@@ -33,7 +33,7 @@ public class StringIsNotNullOrEmptyTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringIsNotNullOrEmpty(error)
+            .StringIsNotNullOrEmpty(() => error)
             .Build();
 
         // Act
@@ -52,7 +52,7 @@ public class StringIsNotNullOrEmptyTests
         var error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringIsNotNullOrEmpty(error)
+            .StringIsNotNullOrEmpty(() => error)
             .Build();
 
         // Act

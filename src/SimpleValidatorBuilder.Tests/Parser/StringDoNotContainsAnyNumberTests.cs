@@ -14,7 +14,7 @@ public class StringDoNotContainsAnyNumberTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringDoNotContainsAnyNumber(error)
+            .StringDoNotContainsAnyNumber(() => error)
             .Build();
 
         // Act
@@ -34,7 +34,7 @@ public class StringDoNotContainsAnyNumberTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringDoNotContainsAnyNumber(error)
+            .StringDoNotContainsAnyNumber(() => error)
             .Build();
 
         // Act

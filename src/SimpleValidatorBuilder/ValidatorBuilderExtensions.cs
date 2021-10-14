@@ -7,88 +7,88 @@ public static class ValidatorBuilderExtensions
     public static ValidatorBuilder<TValue, TError> ValueIsGreaterThanOrEqual<TValue, TError>(
         this ValidatorBuilder<TValue, TError> validatorBuilder,
         TValue minValue,
-        TError error)
+        Func<TError> errorFactory)
         where TValue : IComparable<TValue>
     {
-        validatorBuilder.AddParser(new ValueIsGreaterThanOrEqual<TValue, TError>(minValue, error));
+        validatorBuilder.AddParser(new ValueIsGreaterThanOrEqual<TValue, TError>(minValue, errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<decimal, TError> ValueIsGreaterThanOrEqual<TError>(
         this ValidatorBuilder<decimal, TError> validatorBuilder,
         decimal minValue,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new DecimalIsGreaterThanOrEqual<TError>(minValue, error));
+        validatorBuilder.AddParser(new DecimalIsGreaterThanOrEqual<TError>(minValue, errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<TValue, TError> ValueIsLessThanOrEqual<TValue, TError>(
         this ValidatorBuilder<TValue, TError> validatorBuilder,
         TValue maxValue,
-        TError error)
+        Func<TError> errorFactory)
         where TValue : IComparable<TValue>
     {
-        validatorBuilder.AddParser(new ValueIsLessThanOrEqual<TValue, TError>(maxValue, error));
+        validatorBuilder.AddParser(new ValueIsLessThanOrEqual<TValue, TError>(maxValue, errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<decimal, TError> ValueIsLessThanOrEqual<TError>(
         this ValidatorBuilder<decimal, TError> validatorBuilder,
         decimal maxValue,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new DecimalIsLessThanOrEqual<TError>(maxValue, error));
+        validatorBuilder.AddParser(new DecimalIsLessThanOrEqual<TError>(maxValue, errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> StringIsNotNullOrEmpty<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new StringIsNotNullOrEmpty<TError>(error));
+        validatorBuilder.AddParser(new StringIsNotNullOrEmpty<TError>(errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> StringContainsOnlyNumbers<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new StringContainsOnlyNumbers<TError>(error));
+        validatorBuilder.AddParser(new StringContainsOnlyNumbers<TError>(errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> StringContainsOnlyAlphabetCharacters<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new StringContainsOnlyAlphabetCharacters<TError>(error));
+        validatorBuilder.AddParser(new StringContainsOnlyAlphabetCharacters<TError>(errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> StringDoNotContainsAnyNumber<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new StringDoNotContainsAnyNumber<TError>(error));
+        validatorBuilder.AddParser(new StringDoNotContainsAnyNumber<TError>(errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> LengthIsExactly<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
         int exactLength,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new LengthIsExactly<TError>(exactLength, error));
+        validatorBuilder.AddParser(new LengthIsExactly<TError>(exactLength, errorFactory));
         return validatorBuilder;
     }
 
     public static ValidatorBuilder<string, TError> LengthIsLessThanOrEqual<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
         int maxLength,
-        TError error)
+        Func<TError> errorFactory)
     {
-        validatorBuilder.AddParser(new LengthIsLessThanOrEqual<TError>(maxLength, error));
+        validatorBuilder.AddParser(new LengthIsLessThanOrEqual<TError>(maxLength, errorFactory));
         return validatorBuilder;
     }
 

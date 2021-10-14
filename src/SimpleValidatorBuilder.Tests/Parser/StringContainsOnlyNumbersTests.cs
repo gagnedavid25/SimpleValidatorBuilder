@@ -14,7 +14,7 @@ public class StringContainsOnlyNumbersTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringContainsOnlyNumbers(error)
+            .StringContainsOnlyNumbers(() => error)
             .Build();
 
         // Act
@@ -34,7 +34,7 @@ public class StringContainsOnlyNumbersTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .StringContainsOnlyNumbers(error)
+            .StringContainsOnlyNumbers(() => error)
             .Build();
 
         // Act

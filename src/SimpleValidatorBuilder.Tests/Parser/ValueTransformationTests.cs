@@ -35,7 +35,7 @@ public class ValueTransformationTests
 
         var sut = Validate.That<int, string>()
             .WithTransformation(value => value / 2)
-            .ValueIsLessThanOrEqual(maxValue, error)
+            .ValueIsLessThanOrEqual(maxValue, () => error)
             .Build();
 
         // Act

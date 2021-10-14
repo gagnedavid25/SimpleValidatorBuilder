@@ -4,13 +4,13 @@ namespace SimpleValidatorBuilder.Parser;
 
 public class StringDoNotContainsAnyNumber<TError> : IParser<string, TError>
 {
-    public TError Error { get; }
+    public Func<TError> ErrorFactory { get; }
 
-    internal StringDoNotContainsAnyNumber(TError error)
-        => Error = error;
+    internal StringDoNotContainsAnyNumber(Func<TError> errorFactory)
+        => ErrorFactory = errorFactory;
 
     public Result<string, TError> Parse(in string value)
-        => RunValidation(value, Error);
+        => RunValidation(value, ErrorFactory.Invoke());
 
     public static Result<string, TError> RunValidation(in string value, in TError error)
         => ContainsNumber(value) ? Result.Failure<string, TError>(error) : Result.Success<string, TError>(value);

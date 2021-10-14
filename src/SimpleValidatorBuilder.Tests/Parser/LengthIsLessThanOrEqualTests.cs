@@ -14,7 +14,7 @@ public class LengthIsLessThanOrEqualTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .LengthIsLessThanOrEqual(maxLength, error)
+            .LengthIsLessThanOrEqual(maxLength, () => error)
             .Build();
 
         // Act
@@ -34,7 +34,7 @@ public class LengthIsLessThanOrEqualTests
         const string error = "error";
 
         var sut = Validate.That<string, string>()
-            .LengthIsLessThanOrEqual(maxLength, error)
+            .LengthIsLessThanOrEqual(maxLength, () => error)
             .Build();
 
         // Act
