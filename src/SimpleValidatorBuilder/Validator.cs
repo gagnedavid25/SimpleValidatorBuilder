@@ -6,10 +6,10 @@ public class Validator<TValue, TError>
 {
     public IReadOnlyList<IParser<TValue, TError>> Parsers { get; }
 
-    internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
+    protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
         => Parsers = validatorBuilder.Parsers;
 
-    public Result<TValue, TError> Validate(in TValue value)
+    public Result<TValue, TError> Validate(in TValue value, Func<TError, TError>? modificationsToErrorIfFailure = null)
     {
         Result<TValue, TError> result = Result.Success<TValue, TError>(value);
 
@@ -18,7 +18,7 @@ public class Validator<TValue, TError>
             result = Parsers[i].Parse(result.Value);
 
             if (result.IsFailure)
-                return result;
+                return modificationsToErrorIfFailure is null ? result : modificationsToErrorIfFailure.Invoke(result.Error);
         }
 
         return result;
