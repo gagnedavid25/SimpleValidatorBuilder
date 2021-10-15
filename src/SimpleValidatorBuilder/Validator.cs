@@ -23,4 +23,7 @@ public class Validator<TValue, TError>
 
         return result;
     }
+
+    public static implicit operator Validator<TValue, TError>(ValidatorBuilder<TValue, TError> validatorBuilder)
+        => new Validator<TValue, TError>(validatorBuilder);
 }

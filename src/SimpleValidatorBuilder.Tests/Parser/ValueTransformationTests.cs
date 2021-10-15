@@ -12,9 +12,8 @@ public class ValueTransformationTests
         const int testValue = 12;
         const int transformedValue = 6;
 
-        var sut = Validate.That<int, string>()
-            .WithTransformation(value => value / 2)
-            .Build();
+        Validator<int, string> sut = Validate.That<int, string>()
+            .WithTransformation(value => value / 2);
 
         // Act
         var result = sut.Validate(testValue);
@@ -33,10 +32,9 @@ public class ValueTransformationTests
         const int transformedValue = 6;
         const string error = "error";
 
-        var sut = Validate.That<int, string>()
+        Validator<int, string> sut = Validate.That<int, string>()
             .WithTransformation(value => value / 2)
-            .ValueIsLessThanOrEqual(maxValue, () => error)
-            .Build();
+            .ValueIsLessThanOrEqual(maxValue, () => error);
 
         // Act
         var result = sut.Validate(testValue);

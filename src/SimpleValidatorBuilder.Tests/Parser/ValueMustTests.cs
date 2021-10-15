@@ -12,9 +12,8 @@ public class ValueMustTests
         const int maxValue = 12;
         const string error = "error";
 
-        var sut = Validate.That<int, string>()
-            .ValueMust(value => value <= maxValue, () => error)
-            .Build();
+        Validator<int, string> sut = Validate.That<int, string>()
+            .ValueMust(value => value <= maxValue, () => error);
 
         // Act
         var result = sut.Validate(maxValue);
@@ -32,9 +31,8 @@ public class ValueMustTests
         var testValue = maxValue + 1; 
         const string error = "error";
 
-        var sut = Validate.That<int, string>()
-            .ValueMust(value => value <= maxValue, () => error)
-            .Build();
+        Validator<int, string> sut = Validate.That<int, string>()
+            .ValueMust(value => value <= maxValue, () => error);
 
         // Act
         var result = sut.Validate(testValue);
