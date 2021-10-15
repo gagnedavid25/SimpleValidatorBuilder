@@ -14,15 +14,6 @@ public static class ValidatorBuilderExtensions
         return validatorBuilder;
     }
 
-    public static ValidatorBuilder<decimal, TError> ValueIsGreaterThanOrEqual<TError>(
-        this ValidatorBuilder<decimal, TError> validatorBuilder,
-        decimal minValue,
-        Func<TError> errorFactory)
-    {
-        validatorBuilder.AddParser(new DecimalIsGreaterThanOrEqual<TError>(minValue, errorFactory));
-        return validatorBuilder;
-    }
-
     public static ValidatorBuilder<TValue, TError> ValueIsLessThanOrEqual<TValue, TError>(
         this ValidatorBuilder<TValue, TError> validatorBuilder,
         TValue maxValue,
@@ -30,15 +21,6 @@ public static class ValidatorBuilderExtensions
         where TValue : IComparable<TValue>
     {
         validatorBuilder.AddParser(new ValueIsLessThanOrEqual<TValue, TError>(maxValue, errorFactory));
-        return validatorBuilder;
-    }
-
-    public static ValidatorBuilder<decimal, TError> ValueIsLessThanOrEqual<TError>(
-        this ValidatorBuilder<decimal, TError> validatorBuilder,
-        decimal maxValue,
-        Func<TError> errorFactory)
-    {
-        validatorBuilder.AddParser(new DecimalIsLessThanOrEqual<TError>(maxValue, errorFactory));
         return validatorBuilder;
     }
 

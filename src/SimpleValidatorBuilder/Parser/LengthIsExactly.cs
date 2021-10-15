@@ -14,8 +14,5 @@ public class LengthIsExactly<TError> : IParser<string, TError>
     }
 
     public Result<string, TError> Parse(in string value)
-        => RunValidation(value, ExactLength, ErrorFactory.Invoke());
-
-    public static Result<string, TError> RunValidation(in string value, in int exactLength, in TError error)
-        => value.Length != exactLength ? Result.Failure<string, TError>(error) : Result.Success<string, TError>(value);
+        => value.Length != ExactLength ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

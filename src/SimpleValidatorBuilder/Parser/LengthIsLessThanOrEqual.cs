@@ -14,8 +14,5 @@ public class LengthIsLessThanOrEqual<TError> : IParser<string, TError>
     }
 
     public Result<string, TError> Parse(in string value)
-        => RunValidation(value, MaxLength, ErrorFactory.Invoke());
-
-    public static Result<string, TError> RunValidation(in string value, in int maxLength, in TError error)
-        => value.Length > maxLength ? Result.Failure<string, TError>(error) : Result.Success<string, TError>(value);
+        => value.Length > MaxLength ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

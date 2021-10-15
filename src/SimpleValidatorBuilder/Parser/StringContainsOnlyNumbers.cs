@@ -10,10 +10,7 @@ public class StringContainsOnlyNumbers<TError> : IParser<string, TError>
         => ErrorFactory = errorFactory;
 
     public Result<string, TError> Parse(in string value)
-        => RunValidation(value, ErrorFactory.Invoke());
-
-    public static Result<string, TError> RunValidation(in string value, in TError error)
-        => !IsDigitsOnly(value) ? Result.Failure<string, TError>(error) : Result.Success<string, TError>(value);
+        => !IsDigitsOnly(value) ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
 
     public static bool IsDigitsOnly(string str)
     {
