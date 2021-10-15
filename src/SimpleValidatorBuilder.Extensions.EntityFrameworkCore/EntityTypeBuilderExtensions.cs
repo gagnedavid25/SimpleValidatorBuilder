@@ -7,10 +7,10 @@ public static class EntityTypeBuilderExtensions
 {
     /// <summary>
     /// For all the entity user-defined class properties (value object properties), 
-    /// check if there is one public <see cref="ValidatorBuilder{TValue, TError}"/> static field and apply the EF entity property configuration.
+    /// check if there is one public <see cref="Validator{TValue, TError}"/> static field and apply the EF entity property configuration.
     /// EF value converters must be applied before calling this method.
     /// </summary>
-    public static EntityTypeBuilder<TEntity> ApplyPropertiesConfigurationsUsingStaticValidatorBuilder<TEntity>(this EntityTypeBuilder<TEntity> entityTypeBuilder)
+    public static EntityTypeBuilder<TEntity> ApplyPropertiesConfigurationsUsingStaticValidator<TEntity>(this EntityTypeBuilder<TEntity> entityTypeBuilder)
         where TEntity : class
     {
         var entityProperties = entityTypeBuilder.Metadata
@@ -24,17 +24,17 @@ public static class EntityTypeBuilderExtensions
             if (!propertyType.IsUserDefinedClass())
                 continue;
 
-            var validatorBuilderProperties = propertyType.GetStaticValidatorBuilderFields();
+            var validatorProperties = propertyType.GetStaticValidatorFields();
 
-            if (validatorBuilderProperties.Count != 1) // Currently only supports classes with one validator builder field
+            if (validatorProperties.Count != 1) // Currently only supports classes with one validator builder field
                 continue;
 
-            dynamic validatorBuilder = (dynamic)validatorBuilderProperties
+            dynamic validator = (dynamic)validatorProperties
                 .First()
                 .GetValue(null)!;
 
             var propertyBuilder = entityTypeBuilder.Property(entityProperty.Name);
-            PropertyBuilderExtensions.ApplyPropertyConfigurations(propertyBuilder, validatorBuilder);
+            PropertyBuilderExtensions.ApplyPropertyConfigurations(propertyBuilder, validator);
         }
 
         return entityTypeBuilder;

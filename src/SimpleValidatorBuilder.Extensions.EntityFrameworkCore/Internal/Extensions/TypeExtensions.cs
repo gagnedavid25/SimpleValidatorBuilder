@@ -22,14 +22,14 @@ internal static class TypeExtensions
         return type;
     }
 
-    public static IReadOnlyList<FieldInfo> GetStaticValidatorBuilderFields(this Type type)
+    public static IReadOnlyList<FieldInfo> GetStaticValidatorFields(this Type type)
     {
         var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static);
 
         return fields
             .Where(f =>
                 f.FieldType.IsGenericType &&
-                f.FieldType.GetGenericTypeDefinition() == typeof(ValidatorBuilder<,>))
+                f.FieldType.GetGenericTypeDefinition() == typeof(Validator<,>))
             .ToList();
     }
 }

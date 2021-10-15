@@ -8,9 +8,9 @@ internal static class PropertyBuilderExtensions
 {
     public static void ApplyPropertyConfigurations<TValue, TError>(
         this PropertyBuilder propertyBuilder,
-        ValidatorBuilder<TValue, TError> validatorBuilder)
+        Validator<TValue, TError> validator)
     {
-        foreach (var parser in validatorBuilder.Parsers)
+        foreach (var parser in validator.Parsers)
         {
             propertyBuilder.ApplyPropertyConfiguration(parser);
         }
@@ -22,7 +22,7 @@ internal static class PropertyBuilderExtensions
         {
             propertyBuilder.IsRequired();
         }
-        else if (parser is StringContainsOnlyAlphabetCharacters<TError>)
+        else if (parser is StringContainsOnlyAlphabetCharacters<TError> || parser is StringContainsOnlyNumbers<TError>)
         {
             propertyBuilder.IsUnicode(false);
         }
@@ -36,7 +36,7 @@ internal static class PropertyBuilderExtensions
                 .HasMaxLength(lengthIsExactly.ExactLength)
                 .IsFixedLength();
         }
-        else if (parser is DecimalIsLessThanOrEqual<TError> decimalIsLessThanOrEqual)
+        else if (parser is ValueIsLessThanOrEqual<decimal, TError> decimalIsLessThanOrEqual)
         {
             var (precision, scale) = decimalIsLessThanOrEqual.MaxValue.GetPrecisionAndScale();
             propertyBuilder.HasPrecision(precision, scale);
