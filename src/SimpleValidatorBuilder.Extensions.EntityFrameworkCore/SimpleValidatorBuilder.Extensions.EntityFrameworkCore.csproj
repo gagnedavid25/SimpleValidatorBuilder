@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>gagnedavid25</Authors>
-    <Version>1.2.2</Version>
+    <Version>1.2.3</Version>
     <PackageId>SimpleValidatorBuilder.Extensions.EntityFrameworkCore</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
@@ -23,7 +23,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.11" />
-    <PackageReference Include="SimpleValidatorBuilder" Version="1.2.2" />
+    <PackageReference Include="SimpleValidatorBuilder" Version="1.2.3" />
   </ItemGroup>
 
 </Project>

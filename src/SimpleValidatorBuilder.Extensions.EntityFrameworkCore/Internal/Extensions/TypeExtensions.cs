@@ -28,8 +28,8 @@ internal static class TypeExtensions
 
         return fields
             .Where(f =>
-                f.FieldType.IsGenericType &&
-                f.FieldType.GetGenericTypeDefinition() == typeof(Validator<,>))
+                (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition() == typeof(Validator<,>)) ||
+                (typeof(Validator<,>).IsAssignableFrom(f.FieldType) && !f.FieldType.IsInterface && !f.FieldType.IsAbstract))
             .ToList();
     }
 }
