@@ -22,14 +22,31 @@ internal static class TypeExtensions
         return type;
     }
 
+    public static bool IsAssignableToGenericType(this Type type, Type genericType)
+    {
+        var interfaceTypes = type.GetInterfaces();
+
+        foreach (var it in interfaceTypes)
+        {
+            if (it.IsGenericType && it.GetGenericTypeDefinition() == genericType)
+                return true;
+        }
+
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == genericType)
+            return true;
+
+        var baseType = type.BaseType;
+        if (baseType is null) return false;
+
+        return baseType.IsAssignableToGenericType(genericType);
+    }
+
     public static IReadOnlyList<FieldInfo> GetStaticValidatorFields(this Type type)
     {
         var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static);
 
         return fields
-            .Where(f =>
-                (f.FieldType.IsGenericType && f.FieldType.GetGenericTypeDefinition() == typeof(Validator<,>)) ||
-                (typeof(Validator<,>).IsAssignableFrom(f.FieldType) && !f.FieldType.IsInterface && !f.FieldType.IsAbstract))
+            .Where(f => f.FieldType.IsAssignableToGenericType(typeof(Validator<,>)))
             .ToList();
     }
 }
