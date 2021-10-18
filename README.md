@@ -39,7 +39,7 @@ public class Celsius : SimpleValueObject<decimal>
 ```
 \* The SimpleValueObject class and the Result struct are from the CSharpFunctionalExtensions package.
 
-To create an instance of the Celsius object:
+To create an instance of the Celsius class:
 ```csharp
 var celsius = Celsius.Create(20m).Value;
 ```
@@ -60,7 +60,7 @@ This package provides the `ApplyPropertiesConfigurationsUsingStaticValidator` ex
 
 This method will loop through all properties of the current EntityTypeBuilder's entity, search for the static Validator<TValue, TError> field within the property's type, and apply EF configurations with it.
 
-For example, if the validator uses the **StringIsNotNullOrEmpty** parser, `.IsRequired()` will be applied on the properties using this validator.
+For example, if the validator uses the *StringIsNotNullOrEmpty* parser, `.IsRequired()` will be applied on the properties using this validator.
 
 ## Currently supported EF configurations
 Parser | Applied configuration(s)
