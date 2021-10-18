@@ -2,13 +2,13 @@
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class StringIsNotNullOrEmpty<TError> : IParser<string, TError>
+public sealed class StringIsNotNullOrEmpty<TError> : IParser<string, TError>
 {
-    public Func<TError> ErrorFactory { get; }
+    private Func<TError> _errorFactory;
 
     internal StringIsNotNullOrEmpty(Func<TError> errorFactory)
-        => ErrorFactory = errorFactory;
+        => _errorFactory = errorFactory;
 
     public Result<string, TError> Parse(in string value)
-        => string.IsNullOrEmpty(value) ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
+        => string.IsNullOrEmpty(value) ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

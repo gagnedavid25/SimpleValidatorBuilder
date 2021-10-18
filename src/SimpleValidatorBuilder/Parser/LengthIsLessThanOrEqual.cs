@@ -2,17 +2,18 @@
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class LengthIsLessThanOrEqual<TError> : IParser<string, TError>
+public sealed class LengthIsLessThanOrEqual<TError> : IParser<string, TError>
 {
+    private Func<TError> _errorFactory;
+
     public int MaxLength { get; }
-    public Func<TError> ErrorFactory { get; }
 
     internal LengthIsLessThanOrEqual(int maxLength, Func<TError> errorFactory)
     {
+        _errorFactory = errorFactory;
         MaxLength = maxLength;
-        ErrorFactory = errorFactory;
     }
 
     public Result<string, TError> Parse(in string value)
-        => value.Length > MaxLength ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
+        => value.Length > MaxLength ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

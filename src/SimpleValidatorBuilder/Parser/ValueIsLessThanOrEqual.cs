@@ -2,18 +2,19 @@
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class ValueIsLessThanOrEqual<TValue, TError> : IParser<TValue, TError>
+public sealed class ValueIsLessThanOrEqual<TValue, TError> : IParser<TValue, TError>
     where TValue : IComparable<TValue>
 {
+    private Func<TError> _errorFactory;
+
     public TValue MaxValue { get; }
-    public Func<TError> ErrorFactory { get; }
 
     internal ValueIsLessThanOrEqual(TValue maxValue, Func<TError> errorFactory)
     {
+        _errorFactory = errorFactory;
         MaxValue = maxValue;
-        ErrorFactory = errorFactory;
     }
 
     public Result<TValue, TError> Parse(in TValue value)
-        => value.CompareTo(MaxValue) > 0 ? Result.Failure<TValue, TError>(ErrorFactory.Invoke()) : Result.Success<TValue, TError>(value);
+        => value.CompareTo(MaxValue) > 0 ? Result.Failure<TValue, TError>(_errorFactory.Invoke()) : Result.Success<TValue, TError>(value);
 }

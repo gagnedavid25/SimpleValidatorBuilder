@@ -2,17 +2,18 @@
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class LengthIsExactly<TError> : IParser<string, TError>
+public sealed class LengthIsExactly<TError> : IParser<string, TError>
 {
+    private Func<TError> _errorFactory;
+
     public int ExactLength { get; }
-    public Func<TError> ErrorFactory { get; }
 
     internal LengthIsExactly(int exactLength, Func<TError> errorFactory)
     {
+        _errorFactory = errorFactory;
         ExactLength = exactLength;
-        ErrorFactory = errorFactory;
     }
 
     public Result<string, TError> Parse(in string value)
-        => value.Length != ExactLength ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
+        => value.Length != ExactLength ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

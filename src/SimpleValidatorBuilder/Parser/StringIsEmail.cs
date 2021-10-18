@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class StringIsEmail<TError> : IParser<string, TError>
+public sealed class StringIsEmail<TError> : IParser<string, TError>
 {
     private readonly static EmailAddressAttribute EmailAddressAttribute = new EmailAddressAttribute();
 
     private Func<TError> _errorFactory;
 
-    public StringIsEmail(Func<TError> errorFactory) 
+    internal StringIsEmail(Func<TError> errorFactory) 
         => _errorFactory = errorFactory;
 
     public Result<string, TError> Parse(in string value) 

@@ -2,13 +2,13 @@
 
 namespace SimpleValidatorBuilder.Parser;
 
-public class ValueTransformation<TValue, TError> : IParser<TValue, TError>
+public sealed class ValueTransformation<TValue, TError> : IParser<TValue, TError>
 {
-    public Func<TValue, TValue> TransformationPredicate { get; }
+    private Func<TValue, TValue> _transformationPredicate;
 
     internal ValueTransformation(Func<TValue, TValue> transformationPredicate)
-        => TransformationPredicate = transformationPredicate;
+        => _transformationPredicate = transformationPredicate;
 
     public Result<TValue, TError> Parse(in TValue value)
-        => TransformationPredicate.Invoke(value);
+        => _transformationPredicate.Invoke(value);
 }
