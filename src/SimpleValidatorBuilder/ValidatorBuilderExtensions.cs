@@ -56,6 +56,14 @@ public static class ValidatorBuilderExtensions
         return validatorBuilder;
     }
 
+    public static ValidatorBuilder<string, TError> StringIsEmail<TError>(
+        this ValidatorBuilder<string, TError> validatorBuilder,
+        Func<TError> errorFactory)
+    {
+        validatorBuilder.AddParser(new StringIsEmail<TError>(errorFactory));
+        return validatorBuilder;
+    }
+
     public static ValidatorBuilder<string, TError> LengthIsExactly<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
         int exactLength,
