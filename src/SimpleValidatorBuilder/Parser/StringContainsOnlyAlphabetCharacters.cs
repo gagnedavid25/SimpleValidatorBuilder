@@ -13,9 +13,9 @@ public class StringContainsOnlyAlphabetCharacters<TError> : IParser<string, TErr
     public Result<string, TError> Parse(in string value)
         => !IsAlphabetCharactersOnly(value) ? Result.Failure<string, TError>(ErrorFactory.Invoke()) : Result.Success<string, TError>(value);
 
-    public static bool IsAlphabetCharactersOnly(string str)
-    {
-        var regex = new Regex("^[a-zA-Z]+$");
-        return regex.IsMatch(str);
-    }
+    public static bool IsAlphabetCharactersOnly(string str) 
+        => RegexAlphabetCharactersOnly.IsMatch(str);
+
+    private readonly static Regex RegexAlphabetCharactersOnly = 
+        new Regex("^[a-z]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
 }
