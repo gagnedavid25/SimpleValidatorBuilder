@@ -6,7 +6,7 @@ namespace SimpleValidatorBuilder.Extensions.EntityFrameworkCore6;
 
 public static class ModelConfigurationBuilderExtensions
 {
-    public static ModelConfigurationBuilder ApplyPropertiesConfigurationsUsingStaticValidator(
+    public static ModelConfigurationBuilder ApplyPropertiesConventionsUsingStaticValidator(
         this ModelConfigurationBuilder configurationBuilder,
         Assembly assembly)
     {
@@ -17,15 +17,14 @@ public static class ModelConfigurationBuilderExtensions
 
         foreach (var userClass in publicNonNestedNonGenericClass)
         {
-            var validatorProperties = userClass.GetStaticValidatorFields();
+            var validatorFields = userClass.GetStaticValidatorFields();
 
-            if (validatorProperties.Length != 1) // Currently only supports classes with one validator builder field
+            if (validatorFields.Length != 1) // Currently only supports classes with one validator field
                 continue;
 
-            dynamic validator = (dynamic)validatorProperties[0]
-                .GetValue(null)!;
-
+            dynamic validator = (dynamic)validatorFields[0].GetValue(null)!;
             var propertiesBuilder = configurationBuilder.Properties(userClass);
+            
             PropertiesConfigurationBuilderExtensions.ApplyPropertiesConfigurations(propertiesBuilder, validator);
         }
 

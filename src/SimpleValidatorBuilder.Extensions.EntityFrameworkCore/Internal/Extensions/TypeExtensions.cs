@@ -41,12 +41,12 @@ internal static class TypeExtensions
         return baseType.IsAssignableToGenericType(genericType);
     }
 
-    public static IReadOnlyList<FieldInfo> GetStaticValidatorFields(this Type type)
+    public static FieldInfo[] GetStaticValidatorFields(this Type type)
     {
         var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static);
 
         return fields
             .Where(f => f.FieldType.IsAssignableToGenericType(typeof(Validator<,>)))
-            .ToList();
+            .ToArray();
     }
 }

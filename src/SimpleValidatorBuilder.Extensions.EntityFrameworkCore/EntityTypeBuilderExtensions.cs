@@ -15,7 +15,7 @@ public static class EntityTypeBuilderExtensions
     {
         var entityProperties = entityTypeBuilder.Metadata
             .GetProperties()
-            .ToList();
+            .ToArray();
 
         foreach (var entityProperty in entityProperties)
         {
@@ -24,16 +24,14 @@ public static class EntityTypeBuilderExtensions
             if (!propertyType.IsUserDefinedClass())
                 continue;
 
-            var validatorProperties = propertyType.GetStaticValidatorFields();
+            var validatorFields = propertyType.GetStaticValidatorFields();
 
-            if (validatorProperties.Count != 1) // Currently only supports classes with one validator builder field
+            if (validatorFields.Length != 1) // Currently only supports classes with one validator field
                 continue;
 
-            dynamic validator = (dynamic)validatorProperties
-                .First()
-                .GetValue(null)!;
-
+            dynamic validator = (dynamic)validatorFields[0].GetValue(null)!;
             var propertyBuilder = entityTypeBuilder.Property(entityProperty.Name);
+
             PropertyBuilderExtensions.ApplyPropertyConfigurations(propertyBuilder, validator);
         }
 
