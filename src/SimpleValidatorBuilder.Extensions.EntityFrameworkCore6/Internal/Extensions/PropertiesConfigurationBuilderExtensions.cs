@@ -18,7 +18,9 @@ internal static class PropertiesConfigurationBuilderExtensions
 
     public static void ApplyPropertiesConfiguration<TValue, TError>(this PropertiesConfigurationBuilder propertiesBuilder, IParser<TValue, TError> parser)
     {
-        if (parser is StringContainsOnlyAlphabetCharacters<TError> || parser is StringContainsOnlyNumbers<TError>)
+        if (parser is StringContainsOnlyAlphabetCharacters<TError> || 
+            parser is StringContainsOnlyNumbers<TError> ||
+            parser is StringIsEmail<TError>)
         {
             propertiesBuilder.AreUnicode(false);
         }
