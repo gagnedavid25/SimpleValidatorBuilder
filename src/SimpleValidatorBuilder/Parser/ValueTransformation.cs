@@ -4,7 +4,7 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class ValueTransformation<TValue, TError> : IParser<TValue, TError>
 {
-    private Func<TValue, TValue> _transformationPredicate;
+    private readonly Func<TValue, TValue> _transformationPredicate;
 
     internal ValueTransformation(Func<TValue, TValue> transformationPredicate)
         => _transformationPredicate = transformationPredicate;

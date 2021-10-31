@@ -4,14 +4,14 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class LengthIsLessThanOrEqual<TError> : IParser<string, TError>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     public int MaxLength { get; }
 
     internal LengthIsLessThanOrEqual(int maxLength, Func<TError> errorFactory)
     {
-        _errorFactory = errorFactory;
         MaxLength = maxLength;
+        _errorFactory = errorFactory;
     }
 
     public Result<string, TError> Parse(in string value)

@@ -4,7 +4,7 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class LengthIsExactly<TError> : IParser<string, TError>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     public int ExactLength { get; }
 

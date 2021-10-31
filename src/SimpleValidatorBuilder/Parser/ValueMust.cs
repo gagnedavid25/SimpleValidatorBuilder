@@ -4,14 +4,14 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class ValueMust<TValue, TError> : IParser<TValue, TError>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     public Func<TValue, bool> ValuePredicate { get; }
 
     internal ValueMust(Func<TValue, bool> valuePredicate, Func<TError> errorFactory)
     {
-        _errorFactory = errorFactory;
         ValuePredicate = valuePredicate;
+        _errorFactory = errorFactory;
     }
 
     public Result<TValue, TError> Parse(in TValue value)

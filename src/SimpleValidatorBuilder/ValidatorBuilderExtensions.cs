@@ -74,6 +74,15 @@ public static class ValidatorBuilderExtensions
         return validatorBuilder;
     }
 
+    public static ValidatorBuilder<string, TError> LengthIsGreaterThanOrEqual<TError>(
+        this ValidatorBuilder<string, TError> validatorBuilder,
+        int minLength,
+        Func<TError> errorFactory)
+    {
+        validatorBuilder.AddParser(new LengthIsGreaterThanOrEqual<TError>(minLength, errorFactory));
+        return validatorBuilder;
+    }
+
     public static ValidatorBuilder<string, TError> LengthIsLessThanOrEqual<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
         int maxLength,

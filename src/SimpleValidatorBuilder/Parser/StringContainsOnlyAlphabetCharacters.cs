@@ -5,7 +5,7 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class StringContainsOnlyAlphabetCharacters<TError> : IParser<string, TError>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     internal StringContainsOnlyAlphabetCharacters(Func<TError> errorFactory)
         => _errorFactory = errorFactory;

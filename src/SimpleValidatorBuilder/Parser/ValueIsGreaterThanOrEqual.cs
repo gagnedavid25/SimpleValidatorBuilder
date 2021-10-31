@@ -5,7 +5,7 @@ namespace SimpleValidatorBuilder.Parser;
 public sealed class ValueIsGreaterThanOrEqual<TValue, TError> : IParser<TValue, TError>
     where TValue : IComparable<TValue>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     public TValue MinValue { get; }
 

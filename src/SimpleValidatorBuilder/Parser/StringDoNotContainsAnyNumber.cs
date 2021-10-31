@@ -4,7 +4,7 @@ namespace SimpleValidatorBuilder.Parser;
 
 public sealed class StringDoNotContainsAnyNumber<TError> : IParser<string, TError>
 {
-    private Func<TError> _errorFactory;
+    private readonly Func<TError> _errorFactory;
 
     internal StringDoNotContainsAnyNumber(Func<TError> errorFactory)
         => _errorFactory = errorFactory;
