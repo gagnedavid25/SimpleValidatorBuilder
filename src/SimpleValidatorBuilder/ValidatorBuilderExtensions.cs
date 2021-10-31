@@ -58,9 +58,10 @@ public static class ValidatorBuilderExtensions
 
     public static ValidatorBuilder<string, TError> StringIsEmail<TError>(
         this ValidatorBuilder<string, TError> validatorBuilder,
-        Func<TError> errorFactory)
+        Func<TError> errorFactory,
+        bool enforceWithRegex = false)
     {
-        validatorBuilder.AddParser(new StringIsEmail<TError>(errorFactory));
+        validatorBuilder.AddParser(new StringIsEmail<TError>(errorFactory, enforceWithRegex));
         return validatorBuilder;
     }
 
