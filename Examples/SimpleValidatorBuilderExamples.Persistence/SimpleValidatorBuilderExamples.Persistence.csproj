@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-rc.2.21480.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0-rc.2.21480.5" />
+    <PackageReference Include="SimpleValidatorBuilder.Extensions.EntityFrameworkCore6" Version="1.4.0-preview.1" />
   </ItemGroup>
 
   <ItemGroup>

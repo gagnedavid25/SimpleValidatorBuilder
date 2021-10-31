@@ -6,7 +6,7 @@ using System.Reflection;
 namespace SimpleValidatorBuilderExamples.Persistence.Extensions;
 
 internal static class ModelConfigurationBuilderExtensions
-{   
+{
     public static ModelConfigurationBuilder ConfigureSimpleValueObjects(this ModelConfigurationBuilder configurationBuilder, Assembly assembly)
     {
         var simpleValueObjectTypes = assembly

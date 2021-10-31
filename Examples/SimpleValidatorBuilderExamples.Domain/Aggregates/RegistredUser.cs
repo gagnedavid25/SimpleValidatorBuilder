@@ -7,16 +7,14 @@ namespace SimpleValidatorBuilderExamples.Domain.Aggregates;
 public class RegistredUser : Entity
 {
     public PersonName FirstName { get; private set; }
-    public PersonName LastName { get; private set; }
+    public PersonName? LastName { get; private set; }
 
-
-
-    private RegistredUser(PersonName firstName, PersonName lastName)
+    private RegistredUser(PersonName firstName, PersonName? lastName)
     {
         FirstName = Guard.Argument(firstName, nameof(firstName)).NotNull();
-        LastName = Guard.Argument(lastName, nameof(lastName)).NotNull();
+        LastName = lastName;
     }
 
-    public static RegistredUser CreateNew(PersonName firstName, PersonName lastName) 
+    public static RegistredUser CreateNew(PersonName firstName, PersonName? lastName)
         => new RegistredUser(firstName, lastName);
 }

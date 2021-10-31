@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AppDbContext>(config => 
+builder.Services.AddDbContext<SimpleValidatorBuilderDbContext>(config => 
     config.UseSqlServer("Server=localhost;Database=SimpleValidatorBuilderExamples;User ID=sa;Password=YDaPKhLUsp5XuKpHWXVcBgAz3XK9Umqh"));
 
 var app = builder.Build();

@@ -1,12 +1,12 @@
-﻿using SimpleValidatorBuilder;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
+using SimpleValidatorBuilder;
 
 namespace SimpleValidatorBuilderExamples.Domain.ValueObjects;
 
 public class PersonName : SimpleValueObject<string>
 {
     public const int MaxLength = 60;
-    
+
     private PersonName(string personName)
         : base(personName)
     {

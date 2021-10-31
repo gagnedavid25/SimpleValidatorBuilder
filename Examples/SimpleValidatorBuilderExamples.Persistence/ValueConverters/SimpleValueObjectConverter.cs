@@ -32,14 +32,14 @@ internal static class SimpleValueObjectConverter
     public static readonly Type TypeToSearch = typeof(SimpleValueObject<>);
     public static readonly Type ConverterType = typeof(SimpleValueObjectConverter<,>);
 
-    public static bool IsSimpleValueObjectType(this Type type) 
+    public static bool IsSimpleValueObjectType(this Type type)
         => type.IsPublic && type.IsClass && !type.IsNested &&
             (type.BaseType?.IsGenericType ?? false) &&
             type.BaseType.GetGenericTypeDefinition() == TypeToSearch;
 
-    public static MethodInfo? GetStaticFactoryMethod(Type simpleValueObjectType) 
+    public static MethodInfo? GetStaticFactoryMethod(Type simpleValueObjectType)
         => simpleValueObjectType.GetMethod(StaticFactoryMethodName, BindingFlags.Public | BindingFlags.Static);
 
-    public static void ThrowStaticFactoryMethodMissing(string simpleValueObjectName) 
+    public static void ThrowStaticFactoryMethodMissing(string simpleValueObjectName)
         => throw new InvalidOperationException($"The value object '{simpleValueObjectName}' must have the static factory method '{StaticFactoryMethodName}'.");
 }

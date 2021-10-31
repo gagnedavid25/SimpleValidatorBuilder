@@ -1,21 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SimpleValidatorBuilder.Extensions.EntityFrameworkCore6;
 using SimpleValidatorBuilderExamples.Domain;
-using SimpleValidatorBuilderExamples.Domain.Aggregates;
 using SimpleValidatorBuilderExamples.Persistence.Extensions;
 
 namespace SimpleValidatorBuilderExamples.Persistence;
 
-public class AppDbContext : DbContext
+public abstract class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-    : base(options)
+    public AppDbContext(DbContextOptions options)
+        : base(options)
     {
     }
 
-    DbSet<RegistredUser> RegistredUsers { get; set; }
-
     protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
     {
-        configurationBuilder.ConfigureSimpleValueObjects(typeof(Error).Assembly);
+        var domainAssembly = typeof(Error).Assembly;
+
+        configurationBuilder
+            .ConfigureSimpleValueObjects(domainAssembly)
+            .ApplyPropertiesConfigurationsUsingStaticValidator(domainAssembly);
     }
 }
