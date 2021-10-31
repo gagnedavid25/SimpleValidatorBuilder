@@ -37,7 +37,7 @@ public class Celsius : SimpleValueObject<decimal>
             .ValueIsGreaterThanOrEqual(AbsoluteZeroInCelsius, () => $"Temperature in celsius cannot be below the absolute zero ({AbsoluteZeroInCelsius}).");
 }
 ```
-\* The SimpleValueObject class and the Result struct are from the CSharpFunctionalExtensions package.
+\* *The SimpleValueObject class and the Result struct are from the CSharpFunctionalExtensions package.*
 
 To create an instance of the Celsius class:
 ```csharp
@@ -55,20 +55,56 @@ if (result.IsFailure)
     // Not valid, do something with result.Error
 ```
 
-# SimpleValidatorBuilder.Extensions.EntityFrameworkCore
-This package provides the `ApplyPropertiesConfigurationsUsingStaticValidator` extension method to the `Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<TEntity>` class.
+See the [Examples](https://github.com/gagnedavid25/SimpleValidatorBuilder/tree/master/Examples) folder for a complete solution.
+# Extensions
+## EntityFrameworkCore
+This package target EF Core 5 and provides the `ApplyPropertiesConfigurationsUsingStaticValidator` extension method to the `Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<TEntity>` class.
 
 This method will loop through all properties of the current EntityTypeBuilder's entity, search for the static Validator<TValue, TError> field within the property's type, and apply EF configurations with it.
 
-For example, if the validator uses the *StringIsNotNullOrEmpty* parser, `.IsRequired()` will be applied on the properties using this validator.
+For example, if the validator uses the *LengthIsLessThanOrEqual* parser, `.HasMaxLength(maxLength)` will be applied on the properties using this validator.
 
-## Currently supported EF configurations
+### Currently supported EF Core 5 configurations (v1.5.0+)
 Parser | Applied configuration(s)
 --- | ---
-StringIsNotNullOrEmpty | `IsRequired()`
 StringContainsOnlyAlphabetCharacters | `IsUnicode(false)`
 StringContainsOnlyNumbers | `IsUnicode(false)`
+StringIsEmail | `IsUnicode(false)`
 LengthIsLessThanOrEqual | `HasMaxLength(MaxLengthFromParser)`
 LengthIsExactly | `HasMaxLength(ExactLengthFromParser)` and `IsFixedLength()`
 ValueIsLessThanOrEqual (for decimal only) | `HasPrecision(PrecisionObtainedWithMaxValueFromParser, ScaleObtainedWithMaxValueFromParser)`
 
+## EntityFrameworkCore6
+This package target EF Core 6 and provides the `ApplyPropertiesConventionsUsingStaticValidator` extension method to the `Microsoft.EntityFrameworkCore.ModelConfigurationBuilder` class.
+
+It uses the new [pre-convention model configuration](https://docs.microsoft.com/en-us/ef/core/what-is-new/ef-core-6.0/whatsnew#pre-convention-model-configuration) feature introduced in EF Core 6.
+
+This method will:
+- Scan the provided assembly for all public, non nested, non generic classes that have exactly one static *Validator* field, and are not in the `System` namespace;
+- Loop through all these classes and apply the properties conventions using the *Validator* field.
+
+### Usage
+```csharp
+public class YourDbContext : DbContext
+{
+    [...]
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+    {
+        configurationBuilder.ApplyPropertiesConventionsUsingStaticValidator(yourAssembly);
+        
+        // Don't forget to specify a value converter for the classes having a Validator field.
+        // This is done with `configurationBuilder.HaveConversion()`
+    }
+}
+```
+
+### Currently supported EF Core 6 conventions (v1.5.0+)
+Parser | Applied convention(s)
+--- | ---
+StringContainsOnlyAlphabetCharacters | `AreUnicode(false)`
+StringContainsOnlyNumbers | `AreUnicode(false)`
+StringIsEmail | `AreUnicode(false)`
+LengthIsLessThanOrEqual | `HaveMaxLength(MaxLengthFromParser)`
+LengthIsExactly | `HaveMaxLength(ExactLengthFromParser)` and `AreFixedLength()`
+ValueIsLessThanOrEqual (for decimal only) | `HavePrecision(PrecisionObtainedWithMaxValueFromParser, ScaleObtainedWithMaxValueFromParser)`
