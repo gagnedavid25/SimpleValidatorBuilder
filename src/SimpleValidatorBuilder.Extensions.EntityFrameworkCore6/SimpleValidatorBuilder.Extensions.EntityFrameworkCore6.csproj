@@ -5,24 +5,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>gagnedavid25</Authors>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <PackageId>SimpleValidatorBuilder.Extensions.EntityFrameworkCore6</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Extensions</PackageTags>
-    <Description>Extensions for EntityFrameworkCore 6 to apply entity property configurations using validators field.</Description>
+    <Description>Extensions for Entity Framework Core 6 to apply entity property conventions using validators field.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0-rc.2.21480.5" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0-rc.2.21480.5">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0-rc.2.21480.5" />
-    <PackageReference Include="SimpleValidatorBuilder" Version="1.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
+    <PackageReference Include="SimpleValidatorBuilder" Version="1.5.1" />
   </ItemGroup>
 
 </Project>

@@ -18,6 +18,6 @@ public abstract class AppDbContext : DbContext
 
         configurationBuilder
             .ConfigureSimpleValueObjects(domainAssembly)
-            .ApplyPropertiesConfigurationsUsingStaticValidator(domainAssembly);
+            .ApplyPropertiesConventionsUsingStaticValidator(domainAssembly);
     }
 }

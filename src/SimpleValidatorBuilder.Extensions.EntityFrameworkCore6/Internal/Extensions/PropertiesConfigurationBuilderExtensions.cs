@@ -6,17 +6,13 @@ namespace SimpleValidatorBuilder.Extensions.EntityFrameworkCore6.Internal.Extens
 
 internal static class PropertiesConfigurationBuilderExtensions
 {
-    public static void ApplyPropertiesConfigurations<TValue, TError>(
-        this PropertiesConfigurationBuilder propertiesBuilder,
-        Validator<TValue, TError> validator)
+    public static void ApplyPropertiesConventions<TValue, TError>(this PropertiesConfigurationBuilder propertiesBuilder, Validator<TValue, TError> validator)
     {
         foreach (var parser in validator.Parsers)
-        {
             propertiesBuilder.ApplyPropertiesConfiguration(parser);
-        }
     }
 
-    public static void ApplyPropertiesConfiguration<TValue, TError>(this PropertiesConfigurationBuilder propertiesBuilder, IParser<TValue, TError> parser)
+    private static void ApplyPropertiesConfiguration<TValue, TError>(this PropertiesConfigurationBuilder propertiesBuilder, IParser<TValue, TError> parser)
     {
         if (parser is StringContainsOnlyAlphabetCharacters<TError> || 
             parser is StringContainsOnlyNumbers<TError> ||

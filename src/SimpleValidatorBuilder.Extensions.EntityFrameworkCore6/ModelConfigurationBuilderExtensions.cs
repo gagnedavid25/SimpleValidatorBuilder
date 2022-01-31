@@ -25,7 +25,7 @@ public static class ModelConfigurationBuilderExtensions
             dynamic validator = (dynamic)validatorFields[0].GetValue(null)!;
             var propertiesBuilder = configurationBuilder.Properties(userClass);
             
-            PropertiesConfigurationBuilderExtensions.ApplyPropertiesConfigurations(propertiesBuilder, validator);
+            PropertiesConfigurationBuilderExtensions.ApplyPropertiesConventions(propertiesBuilder, validator);
         }
 
         return configurationBuilder;
