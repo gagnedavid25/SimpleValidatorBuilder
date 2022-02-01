@@ -2,7 +2,7 @@
 using Dawn;
 using SimpleValidatorBuilderExamples.Domain.ValueObjects;
 
-namespace SimpleValidatorBuilderExamples.Domain.Aggregates;
+namespace SimpleValidatorBuilderExamples.Domain.Aggregates.UserEntity;
 
 public class RegistredUser : Entity
 {
