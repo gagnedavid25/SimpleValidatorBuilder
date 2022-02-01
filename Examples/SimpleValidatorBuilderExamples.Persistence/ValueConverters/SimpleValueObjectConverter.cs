@@ -20,7 +20,7 @@ internal class SimpleValueObjectConverter<TSimpleValueObject, TValue> : ValueCon
         if (factoryMethodInfo is null)
             SimpleValueObjectConverter.ThrowStaticFactoryMethodMissing(typeof(TSimpleValueObject).Name);
 
-        var result = (Result<TSimpleValueObject, Error>)factoryMethodInfo.Invoke(null, new object[] { value! })!;
+        var result = (Result<TSimpleValueObject, Error>)factoryMethodInfo!.Invoke(null, new object[] { value! })!;
         return result.Value;
     }
 }

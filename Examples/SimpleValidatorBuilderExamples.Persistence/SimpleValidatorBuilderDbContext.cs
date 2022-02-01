@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleValidatorBuilderExamples.Domain.Aggregates;
+using SimpleValidatorBuilderExamples.Domain.Aggregates.UserEntity;
 
 namespace SimpleValidatorBuilderExamples.Persistence
 {
