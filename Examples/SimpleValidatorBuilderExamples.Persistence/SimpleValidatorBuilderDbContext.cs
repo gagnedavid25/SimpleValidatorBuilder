@@ -10,7 +10,8 @@ namespace SimpleValidatorBuilderExamples.Persistence
         {
         }
 
-        DbSet<RegistredUser> RegistredUsers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserWithoutValidator> UserWithoutValidators { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
