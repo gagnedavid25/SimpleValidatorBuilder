@@ -16,9 +16,6 @@ internal static class ModelConfigurationBuilderExtensions
 
         foreach (var type in simpleValueObjectTypes)
         {
-            if (SimpleValueObjectConverter.GetStaticFactoryMethod(type) is null)
-                SimpleValueObjectConverter.ThrowStaticFactoryMethodMissing(type.Name);
-
             var converterType = SimpleValueObjectConverter.ConverterType.MakeGenericType(type, type.BaseType!.GetGenericArguments()[0]);
 
             configurationBuilder
