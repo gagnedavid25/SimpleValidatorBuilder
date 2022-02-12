@@ -10,10 +10,10 @@ public sealed class LengthIsExactly<TError> : IParser<string, TError>
 
     internal LengthIsExactly(int exactLength, Func<TError> errorFactory)
     {
-        _errorFactory = errorFactory;
         ExactLength = exactLength;
+        _errorFactory = errorFactory;
     }
 
-    public Result<string, TError> Parse(in string value)
+    public Result<string, TError> Parse(string value)
         => value.Length != ExactLength ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

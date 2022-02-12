@@ -4,5 +4,5 @@ namespace SimpleValidatorBuilder;
 
 public interface IParser<TValue, TError>
 {
-    Result<TValue, TError> Parse(in TValue value);
+    Result<TValue, TError> Parse(TValue value);
 }

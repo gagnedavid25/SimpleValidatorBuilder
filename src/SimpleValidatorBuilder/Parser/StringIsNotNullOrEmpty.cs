@@ -9,6 +9,6 @@ public sealed class StringIsNotNullOrEmpty<TError> : IParser<string, TError>
     internal StringIsNotNullOrEmpty(Func<TError> errorFactory)
         => _errorFactory = errorFactory;
 
-    public Result<string, TError> Parse(in string value)
+    public Result<string, TError> Parse(string value)
         => string.IsNullOrEmpty(value) ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

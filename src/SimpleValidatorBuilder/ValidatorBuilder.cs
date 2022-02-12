@@ -9,7 +9,7 @@ public class ValidatorBuilder<TValue, TError>
     internal ValidatorBuilder()
         => _parsers = new List<IParser<TValue, TError>>();
 
-    public void AddParser(in IParser<TValue, TError> validation)
+    public void AddParser(IParser<TValue, TError> validation)
         => _parsers.Add(validation);
 
     public Validator<TValue, TError> Build()

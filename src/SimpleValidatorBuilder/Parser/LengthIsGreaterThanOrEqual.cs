@@ -14,6 +14,6 @@ public sealed class LengthIsGreaterThanOrEqual<TError> : IParser<string, TError>
         _errorFactory = errorFactory;
     }
 
-    public Result<string, TError> Parse(in string value) 
+    public Result<string, TError> Parse(string value) 
         => value.Length < MinLength ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 }

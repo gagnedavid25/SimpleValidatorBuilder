@@ -9,7 +9,7 @@ public sealed class StringDoNotContainsAnyNumber<TError> : IParser<string, TErro
     internal StringDoNotContainsAnyNumber(Func<TError> errorFactory)
         => _errorFactory = errorFactory;
 
-    public Result<string, TError> Parse(in string value)
+    public Result<string, TError> Parse(string value)
         => ContainsNumber(value) ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 
     public static bool ContainsNumber(string str)

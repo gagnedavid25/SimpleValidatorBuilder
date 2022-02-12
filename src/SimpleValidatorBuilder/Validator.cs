@@ -9,9 +9,9 @@ public class Validator<TValue, TError>
     protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
         => Parsers = validatorBuilder.Parsers;
 
-    public Result<TValue, TError> Validate(in TValue value, Func<TError, TError>? modificationsToErrorIfFailure = null)
+    public Result<TValue, TError> Validate(TValue value, Func<TError, TError>? modificationsToErrorIfFailure = null)
     {
-        Result<TValue, TError> result = Result.Success<TValue, TError>(value);
+        var result = Result.Success<TValue, TError>(value);
 
         for (int i = 0; i < Parsers.Count; i++)
         {

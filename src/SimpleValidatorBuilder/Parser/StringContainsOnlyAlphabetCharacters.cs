@@ -10,12 +10,12 @@ public sealed class StringContainsOnlyAlphabetCharacters<TError> : IParser<strin
     internal StringContainsOnlyAlphabetCharacters(Func<TError> errorFactory)
         => _errorFactory = errorFactory;
 
-    public Result<string, TError> Parse(in string value)
+    public Result<string, TError> Parse(string value)
         => !IsAlphabetCharactersOnly(value) ? Result.Failure<string, TError>(_errorFactory.Invoke()) : Result.Success<string, TError>(value);
 
     public static bool IsAlphabetCharactersOnly(string str) 
         => RegexAlphabetCharactersOnly.IsMatch(str);
 
-    private readonly static Regex RegexAlphabetCharactersOnly = 
+    private static readonly Regex RegexAlphabetCharactersOnly = 
         new Regex("^[a-z]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
 }
