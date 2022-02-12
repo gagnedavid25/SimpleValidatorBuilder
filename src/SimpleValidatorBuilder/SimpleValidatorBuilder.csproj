@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>gagnedavid25</Authors>
-    <Version>1.5.1</Version>
+    <Version>1.5.2</Version>
     <PackageId>SimpleValidatorBuilder</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.27.2" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.28.0" />
   </ItemGroup>
 
 </Project>
