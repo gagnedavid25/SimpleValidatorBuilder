@@ -6,12 +6,12 @@
     <Nullable>enable</Nullable>
     <Authors>gagnedavid25</Authors>
     <Version>1.5.2</Version>
-    <PackageId>SimpleValidatorBuilder.Extensions.EntityFrameworkCore6</PackageId>
+    <PackageId>SimpleValidatorBuilder.Extensions.EntityFrameworkCore</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>Extensions</PackageTags>
-    <Description>Extensions for Entity Framework Core 6 to apply entity property conventions using validators field.</Description>
+    <Description>Extensions for Entity Framework Core to apply entity property conventions using validators field.</Description>
   </PropertyGroup>
 
   <ItemGroup>

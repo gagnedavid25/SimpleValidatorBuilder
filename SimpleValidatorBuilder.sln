@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleValidatorBuilder", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleValidatorBuilder.Tests", "src\SimpleValidatorBuilder.Tests\SimpleValidatorBuilder.Tests.csproj", "{21247732-7C74-4E4E-95A0-33C8B4C3A27E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleValidatorBuilder.Extensions.EntityFrameworkCore6", "src\SimpleValidatorBuilder.Extensions.EntityFrameworkCore6\SimpleValidatorBuilder.Extensions.EntityFrameworkCore6.csproj", "{BA30A0D2-EDDB-452F-A1B8-4F77017A01D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleValidatorBuilder.Extensions.EntityFrameworkCore", "src\SimpleValidatorBuilder.Extensions.EntityFrameworkCore\SimpleValidatorBuilder.Extensions.EntityFrameworkCore.csproj", "{BA30A0D2-EDDB-452F-A1B8-4F77017A01D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
