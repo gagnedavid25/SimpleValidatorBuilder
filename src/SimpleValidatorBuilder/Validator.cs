@@ -4,16 +4,16 @@ namespace SimpleValidatorBuilder;
 
 public class Validator<TValue, TError>
 {
-    public IReadOnlyList<IParser<TValue, TError>> Parsers { get; }
+    public IParser<TValue, TError>[] Parsers { get; }
 
     protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
-        => Parsers = validatorBuilder.Parsers;
+        => Parsers = validatorBuilder.Parsers.ToArray();
 
     public Result<TValue, TError> Validate(TValue value, Func<TError, TError>? modificationsToErrorIfFailure = null)
     {
         var result = Result.Success<TValue, TError>(value);
 
-        for (int i = 0; i < Parsers.Count; i++)
+        for (int i = 0; i < Parsers.Length; i++)
         {
             result = Parsers[i].Parse(result.Value);
 
