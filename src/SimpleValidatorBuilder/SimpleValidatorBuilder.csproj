@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.0" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.29.1" />
   </ItemGroup>
 
 </Project>
