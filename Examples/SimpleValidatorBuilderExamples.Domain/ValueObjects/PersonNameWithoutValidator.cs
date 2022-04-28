@@ -11,15 +11,15 @@ public class PersonNameWithoutValidator : SimpleValueObject<string>
     {
     }
 
-    public static Result<PersonNameWithoutValidator, Error> Create(string input)
+    public static PersonNameWithoutValidator Create(string input)
     {
         var name = (input ?? "").Trim();
 
         if (string.IsNullOrEmpty(name))
-            return Errors.ValueIsRequired(nameof(PersonNameWithoutValidator));
+            return null; //Errors.ValueIsRequired(nameof(PersonNameWithoutValidator));
 
         if (name.Length > MaxLength)
-            return Errors.LengthIsInvalid(nameof(PersonNameWithoutValidator), $"Length cannot exeeds {MaxLength} characters");
+            return null; // Errors.LengthIsInvalid(nameof(PersonNameWithoutValidator), $"Length cannot exeeds {MaxLength} characters");
 
         return new PersonNameWithoutValidator(name);
     }

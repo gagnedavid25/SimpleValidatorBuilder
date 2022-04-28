@@ -12,13 +12,13 @@ public class PersonName : SimpleValueObject<string>
     {
     }
 
-    public static Result<PersonName, Error> Create(string input)
+    public static PersonName Create(string input)
     {
         var result = Validator.Validate(input);
-        return result.Bind<string, PersonName, Error>(value => new PersonName(value));
+        return new PersonName(result.Value);
     }
 
-    public readonly static Validator<string, Error> Validator =
+    public static readonly Validator<string, Error> Validator =
         Validate.That<string, Error>()
             .WithTransformation(value => (value ?? "").Trim())
             .StringIsNotNullOrEmpty(() => Errors.ValueIsRequired(nameof(PersonName)))

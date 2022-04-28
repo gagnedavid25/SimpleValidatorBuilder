@@ -1,6 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SimpleValidatorBuilderExamples.Domain;
 using System.Reflection;
 
 namespace SimpleValidatorBuilderExamples.Persistence.ValueConverters;
@@ -8,20 +7,14 @@ namespace SimpleValidatorBuilderExamples.Persistence.ValueConverters;
 internal class SimpleValueObjectConverter<TSimpleValueObject, TValue> : ValueConverter<TSimpleValueObject, TValue>
     where TSimpleValueObject : SimpleValueObject<TValue>
 {
-    private static readonly Func<TValue, Result<TSimpleValueObject, Error>> FactoryMethodDelegate =
-        (Func<TValue, Result<TSimpleValueObject, Error>>)Delegate.CreateDelegate(
-            typeof(Func<TValue, Result<TSimpleValueObject, Error>>), 
+    private static readonly Func<TValue, TSimpleValueObject> FactoryMethodDelegate =
+        (Func<TValue, TSimpleValueObject>)Delegate.CreateDelegate(
+            typeof(Func<TValue, TSimpleValueObject>), 
             SimpleValueObjectConverter.GetStaticFactoryMethod(typeof(TSimpleValueObject)));
 
     public SimpleValueObjectConverter()
-        : base(vo => vo.Value, value => SimpleValueObjectFactory(value))
+        : base(vo => vo.Value, value => FactoryMethodDelegate(value))
     {
-    }
-
-    private static TSimpleValueObject SimpleValueObjectFactory(TValue value)
-    {
-        var result = FactoryMethodDelegate(value!);
-        return result.Value;
     }
 }
 

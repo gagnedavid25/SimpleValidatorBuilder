@@ -6,7 +6,7 @@ using SimpleValidatorBuilderExamples.Domain.ValueObjects;
 using SimpleValidatorBuilderExamples.Persistence;
 
 namespace SimpleValidatorBuilderBenchmark;
-
+/*
 [MemoryDiagnoser]
 public class TestReadData
 {
@@ -61,3 +61,4 @@ public class TestReadData
         _context.Dispose();
     }
 }
+*/
