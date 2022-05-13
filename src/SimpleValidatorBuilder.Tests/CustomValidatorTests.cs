@@ -15,14 +15,14 @@ public class CustomValidatorTests
         const string error = "error";
 
         CustomValidator<string> sut = Validate.That<string, string>()
-            .LengthIsExactly(exactLength, () => error);
+            .LengthIsExactly(exactLength, invalidValue => error);
 
         // Act
         var result = sut.Validate(testString);
 
         // Assert
         result.IsFailure.Should().BeTrue();
-        result.Error.Should().Be(error + $" Invalid value: '{testString}'");
+        result.Error.Should().Be(error);
     }
 }
 
@@ -34,7 +34,7 @@ public class CustomValidator<TValue> : Validator<TValue, string>
     }
 
     public Result<TValue, string> Validate(TValue value) 
-        => base.Validate(value, error => error + $" Invalid value: '{value}'");
+        => base.Validate(value);
 
     public static implicit operator CustomValidator<TValue>(ValidatorBuilder<TValue, string> validatorBuilder)
         => new CustomValidator<TValue>(validatorBuilder);

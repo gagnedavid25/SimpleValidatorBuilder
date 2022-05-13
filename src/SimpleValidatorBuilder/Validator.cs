@@ -1,27 +1,28 @@
 ﻿using CSharpFunctionalExtensions;
+using SimpleValidatorBuilder.Internal;
 
 namespace SimpleValidatorBuilder;
 
 public class Validator<TValue, TError>
 {
-    public IParser<TValue, TError>[] Parsers { get; }
+    private IParser<TValue, TError>[] _parsers;
 
     protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
-        => Parsers = validatorBuilder.Parsers.ToArray();
+        => _parsers = validatorBuilder.Parsers.ToArray();
 
-    public Result<TValue, TError> Validate(TValue value, Func<TError, TError>? modificationsToErrorIfFailure = null)
+    public Result<TValue?, TError> Validate(TValue? value)
     {
-        var result = Result.Success<TValue, TError>(value);
+        var result = new ParserResult<TValue?, TError>(value);
 
-        for (int i = 0; i < Parsers.Length; i++)
+        for (int i = 0; i < _parsers.Length; i++)
         {
-            result = Parsers[i].Parse(result.Value);
+            _parsers[i].Parse(result);
 
             if (result.IsFailure)
-                return modificationsToErrorIfFailure is null ? result : modificationsToErrorIfFailure.Invoke(result.Error);
+                return result.Error!;
         }
 
-        return result;
+        return result.Value;
     }
 
     public static implicit operator Validator<TValue, TError>(ValidatorBuilder<TValue, TError> validatorBuilder)

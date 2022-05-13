@@ -14,7 +14,7 @@ public class LengthIsGreaterThanOrEqualTests
         const string error = "error";
 
         Validator<string, string> sut = Validate.That<string, string>()
-            .LengthIsGreaterThanOrEqual(minLength, () => error);
+            .LengthIsGreaterThanOrEqual(minLength, invalidValue => error);
 
         // Act
         var result = sut.Validate(testString);
@@ -33,7 +33,7 @@ public class LengthIsGreaterThanOrEqualTests
         const string error = "error";
 
         Validator<string, string> sut = Validate.That<string, string>()
-            .LengthIsGreaterThanOrEqual(minLength, () => error);
+            .LengthIsGreaterThanOrEqual(minLength, invalidValue => error);
 
         // Act
         var result = sut.Validate(testString);
