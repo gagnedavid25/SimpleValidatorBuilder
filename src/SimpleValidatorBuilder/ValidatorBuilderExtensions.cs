@@ -1,4 +1,4 @@
-﻿using SimpleValidatorBuilder.Internal.Parser;
+﻿using SimpleValidatorBuilder.Parser;
 
 namespace SimpleValidatorBuilder;
 

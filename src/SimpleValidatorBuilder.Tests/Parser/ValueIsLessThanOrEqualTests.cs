@@ -13,7 +13,7 @@ public class ValueIsLessThanOrEqualTests
         const string error = "error";
 
         Validator<int, string> sut = Validate.That<int, string>()
-            .ValueIsLessThanOrEqual(maxValue, invalidValue => error);
+            .ValueIsLessThanOrEqual(maxValue, _ => error);
 
         // Act
         var result = sut.Validate(maxValue);
@@ -32,7 +32,7 @@ public class ValueIsLessThanOrEqualTests
         const string error = "error";
 
         Validator<int, string> sut = Validate.That<int, string>()
-            .ValueIsLessThanOrEqual(maxValue, invalidValue => error);
+            .ValueIsLessThanOrEqual(maxValue, _ => error);
 
         // Act
         var result = sut.Validate(testValue);

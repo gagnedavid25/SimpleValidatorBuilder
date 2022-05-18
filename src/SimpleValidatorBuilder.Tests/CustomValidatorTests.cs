@@ -15,7 +15,7 @@ public class CustomValidatorTests
         const string error = "error";
 
         CustomValidator<string> sut = Validate.That<string, string>()
-            .LengthIsExactly(exactLength, invalidValue => error);
+            .LengthIsExactly(exactLength, _ => error);
 
         // Act
         var result = sut.Validate(testString);

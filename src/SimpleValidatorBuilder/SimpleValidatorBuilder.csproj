@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Authors>gagnedavid25</Authors>
-    <Version>1.6.0</Version>
+    <Version>1.6.0-alpha5</Version>
     <PackageId>SimpleValidatorBuilder</PackageId>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>

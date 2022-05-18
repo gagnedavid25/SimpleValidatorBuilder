@@ -13,7 +13,7 @@ public class ValueMustTests
         const string error = "error";
 
         Validator<int, string> sut = Validate.That<int, string>()
-            .ValueMust(value => value <= maxValue, invalidValue => error);
+            .ValueMust(value => value <= maxValue, _ => error);
 
         // Act
         var result = sut.Validate(maxValue);
@@ -32,7 +32,7 @@ public class ValueMustTests
         const string error = "error";
 
         Validator<int, string> sut = Validate.That<int, string>()
-            .ValueMust(value => value <= maxValue, invalidValue => error);
+            .ValueMust(value => value <= maxValue, _ => error);
 
         // Act
         var result = sut.Validate(testValue);

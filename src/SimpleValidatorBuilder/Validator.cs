@@ -1,11 +1,16 @@
 ﻿using CSharpFunctionalExtensions;
-using SimpleValidatorBuilder.Internal;
+using SimpleValidatorBuilder.Parser;
 
 namespace SimpleValidatorBuilder;
 
 public class Validator<TValue, TError>
 {
     private IParser<TValue, TError>[] _parsers;
+
+    public IEnumerable<IParser<TValue, TError>> Parsers 
+        => _parsers
+            .ToList()
+            .AsReadOnly();
 
     protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
         => _parsers = validatorBuilder.Parsers.ToArray();
