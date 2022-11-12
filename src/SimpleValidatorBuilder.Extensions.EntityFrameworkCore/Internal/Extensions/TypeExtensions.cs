@@ -37,8 +37,8 @@ internal static class TypeExtensions
 	{
 		var fields = type.GetFields(BindingFlags.Public | BindingFlags.Static);
 
-		return fields
-			.Where(f => f.FieldType.IsAssignableToGenericType(typeof(Validator<,>)))
-			.ToArray();
-	}
+        return fields
+            .Where(f => f.FieldType.IsAssignableToGenericType(typeof(Validator<,>)) || f.FieldType.IsAssignableToGenericType(typeof(ValidatorBuilder<,>)))
+            .ToArray();
+    }
 }
