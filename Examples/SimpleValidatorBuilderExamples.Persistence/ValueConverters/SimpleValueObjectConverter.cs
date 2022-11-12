@@ -10,7 +10,7 @@ internal class SimpleValueObjectConverter<TSimpleValueObject, TValue> : ValueCon
     private static readonly Func<TValue, TSimpleValueObject> FactoryMethodDelegate =
         (Func<TValue, TSimpleValueObject>)Delegate.CreateDelegate(
             typeof(Func<TValue, TSimpleValueObject>), 
-            SimpleValueObjectConverter.GetStaticFactoryMethod(typeof(TSimpleValueObject)));
+            SimpleValueObjectConverter.GetStaticFactoryMethod(typeof(TSimpleValueObject), typeof(TValue)));
 
     public SimpleValueObjectConverter()
         : base(vo => vo.Value, value => FactoryMethodDelegate(value))
@@ -30,9 +30,10 @@ internal static class SimpleValueObjectConverter
             (type.BaseType?.IsGenericType ?? false) &&
             type.BaseType.GetGenericTypeDefinition() == SimpleValueObjectType;
 
-    public static MethodInfo GetStaticFactoryMethod(Type simpleValueObjectType)
+    public static MethodInfo GetStaticFactoryMethod(Type simpleValueObjectType, Type valueType)
     {
-        var factoryMethod = simpleValueObjectType.GetMethod(StaticFactoryMethodName, BindingFlags.Public | BindingFlags.Static);
+        var parametersTypes = new Type[] { valueType };
+        var factoryMethod = simpleValueObjectType.GetMethod(StaticFactoryMethodName, BindingFlags.Public | BindingFlags.Static, parametersTypes);
 
         if (factoryMethod is null)
             ThrowStaticFactoryMethodMissing(simpleValueObjectType.Name);

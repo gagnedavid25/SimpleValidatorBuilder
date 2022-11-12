@@ -1,5 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SimpleValidatorBuilderExamples.Persistence.ValueConverters;
 using System.Reflection;
 

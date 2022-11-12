@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleValidatorBuilderExamples.Domain.Aggregates.UserEntity;
+using SimpleValidatorBuilderExamples.Domain.Aggregates.CustomerAggregate;
 
 namespace SimpleValidatorBuilderExamples.Persistence
 {
@@ -10,7 +10,7 @@ namespace SimpleValidatorBuilderExamples.Persistence
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Customer> Users { get; set; }
         public DbSet<UserWithoutValidator> UserWithoutValidators { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Attributes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using SimpleValidatorBuilderExamples.Domain.Aggregates.UserEntity;
+using SimpleValidatorBuilderExamples.Domain.Aggregates.CustomerAggregate;
 using SimpleValidatorBuilderExamples.Domain.ValueObjects;
 using SimpleValidatorBuilderExamples.Persistence;
 
