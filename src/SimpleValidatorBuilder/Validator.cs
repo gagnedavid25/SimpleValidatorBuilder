@@ -5,12 +5,10 @@ namespace SimpleValidatorBuilder;
 
 public class Validator<TValue, TError>
 {
-    private IParser<TValue, TError>[] _parsers;
+    private readonly IParser<TValue, TError>[] _parsers;
 
     public IEnumerable<IParser<TValue, TError>> Parsers 
-        => _parsers
-            .ToList()
-            .AsReadOnly();
+        => _parsers.ToArray();
 
     protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
         => _parsers = validatorBuilder.Parsers.ToArray();

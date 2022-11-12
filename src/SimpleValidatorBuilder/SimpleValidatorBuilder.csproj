@@ -1,23 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net7.0</TargetFrameworks>
-    <LangVersion>10</LangVersion>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <Authors>gagnedavid25</Authors>
-    <Version>1.6.0-alpha5</Version>
-    <PackageId>SimpleValidatorBuilder</PackageId>
-    <PackageProjectUrl></PackageProjectUrl>
-    <RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageTags>Validation</PackageTags>
-    <Description>A simple C# validator builder using a fluent interface.</Description>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Authors>gagnedavid25</Authors>
+		<Version>1.6.0-alpha10</Version>
+		<PackageId>SimpleValidatorBuilder</PackageId>
+		<PackageProjectUrl></PackageProjectUrl>
+		<RepositoryUrl>https://github.com/gagnedavid25/SimpleValidatorBuilder</RepositoryUrl>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageTags>Validation</PackageTags>
+		<Description>A simple C# validator builder using a fluent interface.</Description>
+		<PackageOutputPath>C:\Program Files (x86)\Microsoft SDKs\NuGetPackages\</PackageOutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.36.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+		<PackageReference Include="CSharpFunctionalExtensions" Version="2.36.1" />
+	</ItemGroup>
 
 </Project>
