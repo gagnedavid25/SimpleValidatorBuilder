@@ -13,7 +13,7 @@ public abstract class PostCode : SimpleValueObject<string>
     public static readonly ValidatorBuilder<string, Error> Validator =
         Validate.That<string, Error>()
             .WithTransformation(value => (value ?? "").Trim())
-            .StringIsNotNullOrEmpty(() => Errors.ValueIsRequired(nameof(PostCode)));
+            .StringIsNotNullOrEmpty(_ => Errors.ValueIsRequired(nameof(PostCode)));
 }
 
 public class CanadianPostCode : PostCode
@@ -33,5 +33,5 @@ public class CanadianPostCode : PostCode
 
     public new static readonly Validator<string, Error> Validator =
         PostCode.Validator
-            .LengthIsExactly(Length, () => Errors.LengthIsInvalid(nameof(CanadianPostCode)));
+            .LengthIsExactly(Length, _ => Errors.LengthIsInvalid(nameof(CanadianPostCode)));
 }

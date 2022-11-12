@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleValidatorBuilder.Extensions.EntityFrameworkCore6;
+using SimpleValidatorBuilder.Extensions.EntityFrameworkCore;
 using SimpleValidatorBuilderExamples.Domain;
 using SimpleValidatorBuilderExamples.Persistence.Extensions;
 

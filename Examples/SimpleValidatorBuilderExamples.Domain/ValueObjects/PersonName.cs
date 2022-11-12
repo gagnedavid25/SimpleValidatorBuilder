@@ -21,6 +21,6 @@ public class PersonName : SimpleValueObject<string>
     public static readonly Validator<string, Error> Validator =
         Validate.That<string, Error>()
             .WithTransformation(value => (value ?? "").Trim())
-            .StringIsNotNullOrEmpty(() => Errors.ValueIsRequired(nameof(PersonName)))
-            .LengthIsLessThanOrEqual(MaxLength, () => Errors.LengthIsInvalid(nameof(PersonName), $"Length cannot exeeds {MaxLength} characters"));
+            .StringIsNotNullOrEmpty(_ => Errors.ValueIsRequired(nameof(PersonName)))
+            .LengthIsLessThanOrEqual(MaxLength, _ => Errors.LengthIsInvalid(nameof(PersonName), $"Length cannot exeeds {MaxLength} characters"));
 }

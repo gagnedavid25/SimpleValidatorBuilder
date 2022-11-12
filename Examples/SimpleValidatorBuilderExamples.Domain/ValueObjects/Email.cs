@@ -21,7 +21,6 @@ public class Email : SimpleValueObject<string>
     public static readonly Validator<string, Error> Validator =
         Validate.That<string, Error>()
             .WithTransformation(value => (value ?? "").Trim())
-            .StringIsNotNullOrEmpty(() => Errors.ValueIsRequired(nameof(Email)))
-            .LengthIsLessThanOrEqual(MaxLength, () => Errors.LengthIsInvalid(nameof(Email), $"Length cannot exeeds {MaxLength} characters"))
-            .StringIsEmail(() => Errors.ValueIsInvalid(nameof(Email), "The value is not a valid email"));
+            .StringIsNotNullOrEmpty(_ => Errors.ValueIsRequired(nameof(Email)))
+            .LengthIsLessThanOrEqual(MaxLength, _ => Errors.LengthIsInvalid(nameof(Email), $"Length cannot exeeds {MaxLength} characters"));
 }
