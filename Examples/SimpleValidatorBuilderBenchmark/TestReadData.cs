@@ -1,4 +1,5 @@
-﻿using BenchmarkDotNet.Attributes;
+﻿/*
+using BenchmarkDotNet.Attributes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using SimpleValidatorBuilderExamples.Domain.Aggregates.CustomerAggregate;
@@ -6,7 +7,7 @@ using SimpleValidatorBuilderExamples.Domain.ValueObjects;
 using SimpleValidatorBuilderExamples.Persistence;
 
 namespace SimpleValidatorBuilderBenchmark;
-/*
+
 [MemoryDiagnoser]
 public class TestReadData
 {

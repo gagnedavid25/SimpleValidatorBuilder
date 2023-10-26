@@ -1,6 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 using FluentAssertions;
+using SimpleValidatorBuilder.Parser;
 using Xunit;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SimpleValidatorBuilder.Tests;
 
@@ -28,8 +30,8 @@ public class CustomValidatorTests
 
 public class CustomValidator<TValue> : Validator<TValue, string>
 {
-    private CustomValidator(ValidatorBuilder<TValue, string> validatorBuilder) : 
-        base(validatorBuilder)
+    private CustomValidator(IParser<TValue, string>[] parsers) : 
+        base(parsers)
     {
     }
 
@@ -37,5 +39,5 @@ public class CustomValidator<TValue> : Validator<TValue, string>
         => base.Validate(value);
 
     public static implicit operator CustomValidator<TValue>(ValidatorBuilder<TValue, string> validatorBuilder)
-        => new CustomValidator<TValue>(validatorBuilder);
+        => new CustomValidator<TValue>(validatorBuilder.Parsers);
 }

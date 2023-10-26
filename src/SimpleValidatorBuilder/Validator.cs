@@ -10,12 +10,13 @@ public class Validator<TValue, TError>
     public IEnumerable<IParser<TValue, TError>> Parsers 
         => _parsers.ToArray();
 
-    protected internal Validator(ValidatorBuilder<TValue, TError> validatorBuilder) 
-        => _parsers = validatorBuilder.Parsers.ToArray();
+    protected internal Validator(IParser<TValue, TError>[] parsers) 
+        => _parsers = parsers;
 
     public Result<TValue?, TError> Validate(TValue? value)
     {
-        var result = new ParserResult<TValue?, TError>(value);
+        var result = new ParserResult<TValue?, TError>();
+        result.SetValue(value);
 
         for (int i = 0; i < _parsers.Length; i++)
         {
@@ -29,5 +30,5 @@ public class Validator<TValue, TError>
     }
 
     public static implicit operator Validator<TValue, TError>(ValidatorBuilder<TValue, TError> validatorBuilder)
-        => new Validator<TValue, TError>(validatorBuilder);
+        => validatorBuilder.Build();
 }

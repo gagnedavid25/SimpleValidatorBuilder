@@ -1,19 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.0" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.9" />
+    <PackageReference Include="SimpleValidatorBuilder" Version="1.6.0-alpha13" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleValidatorBuilderExamples.Persistence\SimpleValidatorBuilderExamples.Persistence.csproj" />
+    <ProjectReference Include="..\SimpleValidatorBuilderExamples.Domain\SimpleValidatorBuilderExamples.Domain.csproj" />
   </ItemGroup>
 
 </Project>
