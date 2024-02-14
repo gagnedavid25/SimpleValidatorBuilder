@@ -7,7 +7,7 @@ public class Validator<TValue, TError>
 {
     private readonly IParser<TValue, TError>[] _parsers;
 
-    public IEnumerable<IParser<TValue, TError>> Parsers 
+    public IParser<TValue, TError>[] Parsers 
         => _parsers.ToArray();
 
     protected internal Validator(IParser<TValue, TError>[] parsers) 

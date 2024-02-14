@@ -1,4 +1,5 @@
 ﻿using SimpleValidatorBuilder.Parser;
+using System.Net.Http.Headers;
 
 namespace SimpleValidatorBuilder;
 
@@ -100,6 +101,14 @@ public static class ValidatorBuilderExtensions
         Func<TValue?, TValue?> transformationPredicate)
     {
         validatorBuilder.AddParser(new ValueTransformation<TValue, TError>(transformationPredicate));
+        return validatorBuilder;
+    }
+
+    public static ValidatorBuilder<TValue, TError> WithValidator<TValue, TError>(
+        this ValidatorBuilder<TValue, TError> validatorBuilder,
+        Validator<TValue, TError> validator)
+    {
+        validatorBuilder.AddParsers(validator.Parsers);
         return validatorBuilder;
     }
 }
